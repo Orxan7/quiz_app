@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="display-4">Tests</h1>
+    <ul class="list-group list-group-flush">
+        {% for test in tests %}
+        <li class="list-group-item" name="{{ test.name }}"><a href="{{ test.name }}">{{ test.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <br>
+    <h4><a href="{% url 'quiz' %}">Go back</a></h4>
+</div>
+{% endblock %}

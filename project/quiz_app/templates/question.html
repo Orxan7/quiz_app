@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-10 col-lg-10">
+                <div class="border">
+                    {% if question %}
+                    <div class="question bg-white p-3 border-bottom">
+                        <div class="d-flex flex-row justify-content-between align-items-center mcq">
+                            <h4>{{ question.test.name }}</h4><span>({{i}} of {{ len }})</span></div>
+                    </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                    <div class="question bg-white p-3 border-bottom">
+                        <div class="d-flex flex-row align-items-center question-title">
+                            <h5 class="mt-1 ml-2">{{ question.question }}</h5>
+                        </div><div class="ans ml-2">
+                        <label class="radio"> <input type="radio" name="variant" value="{{ question.var1 }}"> <span>{{ question.var1 }}</span>
+                        </label>
+                        </div><div class="ans ml-2">
+                        <label class="radio"> <input type="radio" name="variant" value="{{ question.var2 }}"> <span>{{ question.var2 }}</span>
+                        </label>
+                        </div><div class="ans ml-2">
+                        <label class="radio"> <input type="radio" name="variant" value="{{ question.var3 }}"> <span>{{ question.var3 }}</span>
+                        </label>
+                        </div><div class="ans ml-2">
+                        <label class="radio"> <input type="radio" name="variant" value="{{ question.var4 }}"> <span>{{ question.var4 }}</span>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="d-flex p-3 align-items-right"><button class="btn btn-primary border-success btn-success" disabled="true" type="submit">Next<i class="fa fa-angle-right ml-2"></i></button></div>
+                    </form>
+                    {% else %}
+                    <div class="question bg-white p-3 border-bottom">
+                        <div class="d-flex flex-row justify-content-between align-items-center mcq">
+                            <h4>No questions yet :(</h4><a href="{% url 'quiz' %}">Go Back</a></div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% load static %}
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

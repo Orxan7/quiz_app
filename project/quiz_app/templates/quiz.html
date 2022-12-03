@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="display-4">Modules</h1>
+    <ul class="list-group list-group-flush">
+        {% for module in modules %}
+        <li class="list-group-item">
+            <a href="{{ module.name }}">{{ module.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <h4><a href="{% url 'index' %}">Go back</a></h4>
+</div>
+{% endblock %}
