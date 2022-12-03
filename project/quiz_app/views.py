@@ -105,6 +105,14 @@ def tests(request, module, test):
         userhelper = UserHelper.objects.filter(user=request.user).first()
         count = len(questions)
         if request.method == 'POST':
+            if request.POST.get('variant', '') == "":
+                return render(request, 'question.html', {
+                    'username': request.user,
+                    'title': test,
+                    'question': questions[userhelper.i],
+                    'len': count,
+                    'i': userhelper.i + 1
+                })
             if request.POST.get('variant', '') == questions[userhelper.i].answer:
                 userhelper.score = userhelper.score + 1
             if userhelper.i + 1 == count:
